@@ -1,0 +1,48 @@
+.buttonstart {
+	display: block;
+	margin: auto;
+	width: 30%;
+	height: 200px;
+	cursor: pointer;
+	/*border: 2px solid blue;*/
+	/*padding: 5px;*/
+}
+
+.gcolor {
+	color: green;
+}
+
+.letterpmarker {
+	font-family: 'Permanent Marker', cursive;
+	text-align: center;
+}
+
+.lettercourgette {
+	font-family: 'Courgette', cursive;
+	text-align: justify;
+}
+
+.letterlobster {
+	font-family: 'Lobster', cursive;
+	text-align: center;
+}
+
+.doublef {
+	font-size: 2em;
+}
+
+.triplef {
+	font-size: 3em;
+}
+
+body {
+	background-image: url("https://media.giphy.com/media/AhQkcuEFuVSOk/giphy.gif");
+}
+
+body h1 {
+	color: darkblue;
+	font-family: 'Acme', sans-serif;
+	text-align: center;
+	font-size: 5em;
+}
+
