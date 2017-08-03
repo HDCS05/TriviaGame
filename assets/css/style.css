@@ -8,8 +8,31 @@
 	/*padding: 5px;*/
 }
 
+.btn-success {
+	display: block;
+	margin: auto;
+}
+
+.modal-header {
+	font-size: 3em;
+	color: purple;
+}
+
+.modal-body {
+	font-size: 2em;
+	text-align: justify;
+}
+
 .gcolor {
 	color: green;
+}
+
+.ocolor {
+	color: orange;
+}
+
+.bcolor {
+	color: blue;
 }
 
 .letterpmarker {
