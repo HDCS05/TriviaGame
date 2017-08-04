@@ -15,11 +15,13 @@
 
 .modal-header {
 	font-size: 3em;
-	color: purple;
+	text-align: center;
+	color: white;
 }
 
 .modal-body {
 	font-size: 2em;
+	color: darkblue;
 	text-align: justify;
 }
 

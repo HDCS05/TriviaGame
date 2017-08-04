@@ -35,7 +35,7 @@ $(function () {
 						"Doom is a 1993 science fiction horror-themed first-person shooter (FPS) video game by id Software. It is considered one of the most significant and influential titles in video game history, for having helped to pioneer the now-ubiquitous first-person shooter.",
 						"Apple Computer 1, also known later as the Apple I, or Apple-1, is a desktop computer released by the Apple Computer Company (now Apple Inc.) in 1976. It was designed and hand-built by Steve Wozniak. Wozniak's friend Steve Jobs had the idea of selling the computer.",
 						"Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.",
-						"HP, Google, Microsoft, and Apple have one thing in common – apart from the obvious that they are IT companies. They were all started in garages.",
+						"HP, Google, Microsoft, and Apple have one thing in common, apart from the obvious, that they are IT companies. They were all started in garages.",
 						"Through The Legend of Zelda series, Link is depicted as a child, teenager, or young adult of the Hylian race, originating from the fictional land of Hyrule. Link often travels through Hyrule, defeating creatures, evil forces, and the series' primary antagonist, Ganon, while attempting to save Princess Zelda and Hyrule.",
 						"A typeface with serifs is called a serif typeface (or serifed typeface). A typeface without serifs is called sans-serif or sans serif, from the French sans, meaning without.",
 						"Random-access memory is a form of computer data storage which stores frequently used program instructions to increase the general speed of a system.",
@@ -83,6 +83,8 @@ $(function () {
 	var vlosses = 0;
 	var vunanswer = 0;
 	var vrightans = false;
+	var vmessag = "";
+	var vtime2 = "";
 
 	fstartbut();
 	
@@ -90,6 +92,7 @@ $(function () {
 		vwins = 0;
 		vlosses = 0;
 		vunanswer = 0;
+		$("#VarContent").empty();
 		vDispcont = $("<img>");
 		vDispcont.addClass("buttonstart");
 		vDispcont.attr("src","assets/images/playbutton.jpg");
@@ -138,7 +141,6 @@ $(function () {
 		$("#VarContent").append(vDispcont);
 		$("#VarContent").append("<br/>");
 		$("#Questiontx").text(vrandomquestion);
-		vnumtime = 31;
 		vIntervaldown = setInterval(function(){ ftimer() }, 1000);
 		vrightans = false;
 		flistensel();
@@ -211,20 +213,35 @@ $(function () {
 	function fmessages() {
 		if (vnumtime == 0) {
 			$(".modal-title").text("Out of time!");
-			var vmessag = $(".modal-body").text("The right answer was\n \n" + vrandomquestion + "\n \n" + atext[varrpos]);
+			$(".modal-title").css("background-color", "orange");
+			vmessag = $(".modal-body").text("The right answer was\n \n" + vrandomquestion + "\n \n" + atext[varrpos]);
 			vmessag.html(vmessag.html().replace(/\n/g,'<br/>'));
 		} else {
 			if (vrightans == true) {
 				$(".modal-title").text("Correct!");
-				var vmessag = $(".modal-body").text(vrandomquestion + "\n" + "\n" + atext[varrpos]);
+				$(".modal-title").css("background-color", "green");
+				vmessag = $(".modal-body").text(vrandomquestion + "\n" + "\n" + atext[varrpos]);
 				vmessag.html(vmessag.html().replace(/\n/g,'<br/>'));
 			} else {
 				$(".modal-title").text("Wrong!");
-				var vmessag = $(".modal-body").text("The right answer was\n \n" + vrandomquestion + "\n \n" + atext[varrpos]);
+				$(".modal-title").css("background-color", "red");
+				vmessag = $(".modal-body").text("The right answer was\n \n" + vrandomquestion + "\n \n" + atext[varrpos]);
 				vmessag.html(vmessag.html().replace(/\n/g,'<br/>'));
 			}
 		}
 		$("#myModal").modal("show");
+		vnumtime = 36;
+		if ((vwins + vlosses + vunanswer) < 5 ) {
+			vtime2 = setTimeout(function(){$("#myModal").modal("hide");},5000);
+			fboxes();
+		} else {
+			clearTimeout(vtime2);
+			$(".modal-title").text("All done, here's how you did");
+			$(".modal-title").css("background-color","lightblue");
+			vmessag = $(".modal-body").text("\n Correct Answers: " + vwins + "\n \n Incorrect Answers: " + vlosses + "\n \n Unanswered: " + vunanswer);
+			vmessag.html(vmessag.html().replace(/\n/g,'<br/>'));
+			fstartbut();
+		}
 	};
 
 	function ftimer() {
@@ -240,12 +257,5 @@ $(function () {
 	function fstoptime(){
 		clearInterval(vIntervaldown);
 	};
-
-// Pendientes agregar tiempo al mensaje despues de presionar respuesta
-// llamar a siguiente pregunta despues de agregar el tiempo del mensaje
-// validar si son mas de 5 preguntas terminar el juego y dar mensaje de ganados y perdidos o no contestada a tiempo
-// tiempo en ultimo mensaje y reiniciar el juego.
-
-
 
 });
